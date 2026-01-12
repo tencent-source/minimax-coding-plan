@@ -1,0 +1,40 @@
+TITLE:
+MiniMax Coding Plan - $2/month AI API that works with Cursor, Claude Code, Cline (+ 10% off)
+
+---
+
+POST BODY:
+
+Hey everyone,
+
+Wanted to share a deal I found for those using AI coding assistants.
+
+**What is it?**
+MiniMax has a "Coding Plan" - unlimited API access to their M2.1 model for $2/month (starter tier). It works with basically every AI coding tool:
+
+- Cursor
+- Claude Code  
+- Cline
+- Roo Code
+- OpenCode
+- Kilo Code
+- Trae
+- Grok CLI
+- Codex CLI
+- Droid
+
+**Why it's interesting:**
+- Way cheaper than OpenAI/Anthropic API costs
+- M2.1 is surprisingly capable for coding tasks
+- Works as a drop-in replacement in most tools
+
+**The deal:**
+- $2/month starter plan runs until Jan 15, 2026
+- Referral program gives 10% off your first payment
+
+If you want to try it: https://tencent-source.github.io/minimax-coding-plan/
+
+That's my referral page - you get 10% off, I get some API credits. Win-win.
+
+
+Anyone else tried it? Curious what others think of M2.1 for coding.

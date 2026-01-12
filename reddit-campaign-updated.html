@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Post Preview - MiniMax Coding Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #DAE0E6;
+            color: #1c1c1c;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .reddit-header {
+            background: linear-gradient(135deg, #FF4500 0%, #FF6B35 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reddit-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .post {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .post-header {
+            padding: 8px 16px;
+            border-bottom: 1px solid #EDEFF1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .subreddit {
+            font-weight: 700;
+            color: #0079D3;
+            text-decoration: none;
+        }
+
+        .author {
+            color: #7C7C7C;
+        }
+
+        .author:hover {
+            text-decoration: underline;
+        }
+
+        .post-content {
+            padding: 16px;
+        }
+
+        .post-title {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        /* Reddit Markdown Styling */
+        .md {
+            max-width: 100%;
+            word-wrap: break-word;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .md h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 24px 0 16px 0;
+            color: #222;
+            border-bottom: 2px solid #FF4500;
+            padding-bottom: 8px;
+        }
+
+        .md h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 20px 0 12px 0;
+            color: #222;
+            border-bottom: 1px solid #EDEFF1;
+            padding-bottom: 6px;
+        }
+
+        .md h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 16px 0 10px 0;
+            color: #222;
+        }
+
+        .md p {
+            margin-bottom: 16px;
+        }
+
+        .md strong {
+            font-weight: 700;
+            color: #222;
+        }
+
+        .md em {
+            font-style: italic;
+        }
+
+        .md del {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .md ul {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .md ul li {
+            margin-bottom: 8px;
+        }
+
+        .md ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .md ol li {
+            margin-bottom: 8px;
+        }
+
+        .md blockquote {
+            border-left: 4px solid #FF4500;
+            margin: 16px 0;
+            padding: 8px 16px;
+            background-color: #FAFAFA;
+            color: #4A4A4A;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .md code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #EDEFF1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #222;
+        }
+
+        .md pre {
+            background-color: #1A1A1B;
+            color: #D7DADC;
+            padding: 16px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .md pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+        }
+
+        .md table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .md table th {
+            background-color: #EDEFF1;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 700;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .md table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #EDEFF1;
+        }
+
+        .md table tr:hover {
+            background-color: #FAFAFA;
+        }
+
+        .md a {
+            color: #0079D3;
+            text-decoration: none;
+        }
+
+        .md a:hover {
+            text-decoration: underline;
+        }
+
+        .md hr {
+            border: none;
+            border-top: 1px solid #EDEFF1;
+            margin: 24px 0;
+        }
+
+        .md .spoiler {
+            background-color: #000;
+            color: #000;
+            cursor: pointer;
+            padding: 0 4px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .md .spoiler:hover {
+            background-color: transparent;
+            color: inherit;
+        }
+
+        .post-footer {
+            padding: 12px 16px;
+            background-color: #F6F7F8;
+            border-top: 1px solid #EDEFF1;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+            color: #7C7C7C;
+        }
+
+        .vote-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #878A8C;
+            padding: 4px;
+        }
+
+        .vote-btn:hover {
+            background-color: #EDEFF1;
+            border-radius: 4px;
+        }
+
+        .vote-count {
+            font-weight: 700;
+            color: #1A1A1B;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 13px;
+            color: #7C7C7C;
+            cursor: pointer;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .action-btn:hover {
+            background-color: #EDEFF1;
+        }
+
+        .preview-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #FF4500;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 69, 0, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .copy-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0079D3;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 121, 211, 0.4);
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .copy-btn:hover {
+            background-color: #0066A3;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .md h1 { font-size: 24px; }
+            .md h2 { font-size: 20px; }
+            .md h3 { font-size: 18px; }
+            .post-title { font-size: 18px; }
+            .preview-badge {
+                top: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-badge">👁️ Reddit Preview</div>
+    <div class="container">
+        <div class="reddit-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+            </svg>
+            <h1>reddit.com/r/programming</h1>
+        </div>
+
+        <div class="post">
+            <div class="post-header">
+                <a href="#" class="subreddit">r/programming</a>
+                <span class="author">• Posted by u/minimax-fan 2 hours ago</span>
+            </div>
+
+            <div class="post-content">
+                <div class="post-title">🎁 MiniMax Coding Plan - $2/month AI API (+ 10% off)</div>
+                <div class="md">
+                    <h2>🚀 What Is This?</h2>
+                    <p>MiniMax just launched their Coding Plan — a dirt-cheap AI API tier designed specifically for developers. Think of it as a budget-friendly alternative to OpenAI and Anthropic that actually works with the tools you're already using.</p>
+                    <p><strong>Key highlights:</strong></p>
+                    <ul>
+                        <li>$2/month starter pricing (until Jan 15, 2026 — <del>$5/mo after</del>)</li>
+                        <li>Unlimited API access with their M2.1 model</li>
+                        <li>Works with 10+ popular coding tools out of the box</li>
+                        <li><em>Surprisingly decent</em> code generation capabilities</li>
+                    </ul>
+                    <p>If you're tired of paying $20+/month for GPT-4 or Claude 3.5 for everyday coding tasks, this might be exactly what you need.</p>
+
+                    <hr>
+
+                    <h2>💰 Pricing That Makes Sense</h2>
+                    <p>Here's how MiniMax stacks up against the big players:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>MiniMax</th>
+                                <th>OpenAI</th>
+                                <th>Anthropic</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Starter Price</strong></td>
+                                <td><strong>$2/mo</strong></td>
+                                <td>$20/mo+</td>
+                                <td>$20/mo+</td>
+                            </tr>
+                            <tr>
+                                <td>Coding Support</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td>Tool Integration</td>
+                                <td>10+ tools</td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                            </tr>
+                            <tr>
+                                <td>API Access</td>
+                                <td>Unlimited</td>
+                                <td>Metered</td>
+                                <td>Metered</td>
+                            </tr>
+                            <tr>
+                                <td>Model Quality</td>
+                                <td>Good (M2.1)</td>
+                                <td>Excellent (GPT-4)</td>
+                                <td>Excellent (Claude 3.5)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <blockquote>💡 <strong>Bottom line:</strong> If you do 90% of your coding with AI, MiniMax saves you ~$216/year. That's significant for a side project or hobby dev.</blockquote>
+
+                    <hr>
+
+                    <h2>🔧 Works With Your Stack</h2>
+                    <p>The best part? No setup headaches. MiniMax integrates directly with tools you already use:</p>
+                    <ul>
+                        <li><code>Cursor</code> — Popular AI-powered IDE</li>
+                        <li><code>Claude Code</code> — Anthropic's CLI tool</li>
+                        <li><code>Cline</code> — VS Code AI assistant</li>
+                        <li><code>Roo Code</code> — Coding AI agent</li>
+                        <li><code>OpenCode</code> — Multi-agent coding system</li>
+                        <li><code>Kilo Code</code> — Code generation tool</li>
+                        <li><code>Trae</code> — AI coding companion</li>
+                        <li><code>Grok CLI</code> — xAI's developer tool</li>
+                        <li><code>Codex CLI</code> — OpenAI's CLI</li>
+                        <li><code>Droid</code> — Android development AI</li>
+                    </ul>
+                    <p>Just swap in your MiniMax API key and you're good to go. No migration needed.</p>
+
+                    <hr>
+
+                    <h2>⏰ Limited Time Offer</h2>
+                    <blockquote>🎉 <strong>Get 10% off your subscription</strong> through this referral link. I get API credits, you get cheaper AI. Win-win!</blockquote>
+                    <p>The $2/month pricing is a <strong>limited-time launch offer</strong> ending January 15, 2026. After that, it bumps to $5/month — still cheaper than the competition, but grab it now to lock in the lowest rate.</p>
+
+                    <hr>
+
+                    <h2>📝 My Experience</h2>
+                    <p>I've been using MiniMax for about two weeks now. Here's my honest take:</p>
+                    <p><strong>✅ Pros:</strong></p>
+                    <ul>
+                        <li><strong>Significantly cheaper</strong> than the alternatives</li>
+                        <li><strong>Wide tool compatibility</strong> — works with everything I tested</li>
+                        <li><strong>Decent coding performance</strong> for everyday tasks (boilerplate, refactoring, debugging)</li>
+                        <li><strong>Unlimited API calls</strong> means I don't have to ration usage</li>
+                        <li><strong>Fast response times</strong> — on par with GPT-4 for simple queries</li>
+                    </ul>
+                    <p><strong>❌ Cons:</strong></p>
+                    <ul>
+                        <li><strong>Not Claude 3.5 level</strong> — complex reasoning and architectural decisions aren't as strong</li>
+                        <li><strong>Less documentation</strong> — fewer examples and community resources</li>
+                        <li><strong>Newer ecosystem</strong> — troubleshooting can be hit-or-miss</li>
+                        <li><em>Occasionally</em> hallucinates on edge-case APIs</li>
+                    </ul>
+                    <p><strong>Verdict:</strong> Perfect for 80% of coding tasks. When I need serious architectural thinking, I still reach for Claude 3.5 or GPT-4. But for day-to-day coding? MiniMax is <em>plenty</em> capable.</p>
+
+                    <hr>
+
+                    <h2>🔗 Want to Try It?</h2>
+                    <p><a href="https://minimax.ai"><strong>🚀 Get MiniMax Coding Plan (10% off)</strong></a></p>
+                    <p>Setup takes 5 minutes:</p>
+                    <ol>
+                        <li>Sign up and grab your API key</li>
+                        <li>Plug it into your tool of choice</li>
+                        <li>Start coding for $2/month</li>
+                    </ol>
+                    <p><em>Still not sure? The free tier lets you test it out before committing.</em></p>
+
+                    <hr>
+
+                    <h2>📊 Quick Comparison</h2>
+                    <p><strong>MiniMax M2.1 vs the rest:</strong></p>
+                    <pre><code># MiniMax — $2/month
+response = minimax.generate("Create a REST API with Flask")
+# Fast, competent, gets 80% of the way there
+
+# Claude 3.5 Sonnet — $20/month
+response = claude.generate("Create a REST API with Flask")
+# Slower, more thoughtful, gets 95% of the way there
+
+# GPT-4 — $20/month
+response = openai.generate("Create a REST API with Flask")
+# Reliable, well-documented, gets 90% of the way there</code></pre>
+                    <p>For 20% of the price, you get 80-90% of the quality. <strong>The math makes sense for most developers.</strong></p>
+
+                    <hr>
+
+                    <p><em>Disclosure: This is my referral link. You get 10% off your subscription, I get API credits to keep coding. Thanks for supporting! If referral links bother you, you can also sign up directly — just search for "MiniMax Coding Plan".</em></p>
+                </div>
+            </div>
+
+            <div class="post-footer">
+                <div class="vote-buttons">
+                    <button class="vote-btn">▲</button>
+                    <span class="vote-count">1.2k</span>
+                    <button class="vote-btn">▼</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn">💬 284 Comments</button>
+                    <button class="action-btn">Share</button>
+                    <button class="action-btn">Save</button>
+                    <button class="action-btn">Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyMarkdown()">📋 Copy Markdown</button>
+
+    <script>
+        function copyMarkdown() {
+            const markdown = `# 🎁 MiniMax Coding Plan - $2/month AI API (+ 10% off)
+
+## 🚀 What Is This?
+
+MiniMax just launched their Coding Plan — a dirt-cheap AI API tier designed specifically for developers. Think of it as a budget-friendly alternative to OpenAI and Anthropic that actually works with the tools you're already using.
+
+**Key highlights:**
+- $2/month starter pricing (until Jan 15, 2026 — ~~$5/mo after~~)
+- Unlimited API access with their M2.1 model
+- Works with 10+ popular coding tools out of the box
+- *Surprisingly decent* code generation capabilities
+
+If you're tired of paying $20+/month for GPT-4 or Claude 3.5 for everyday coding tasks, this might be exactly what you need.
+
+---
+
+## 💰 Pricing That Makes Sense
+
+Here's how MiniMax stacks up against the big players:
+
+| Feature | MiniMax | OpenAI | Anthropic |
+|---------|---------|--------|-----------|
+| **Starter Price** | **$2/mo** | $20/mo+ | $20/mo+ |
+| Coding Support | ✅ | ✅ | ✅ |
+| Tool Integration | 10+ tools | Limited | Limited |
+| API Access | Unlimited | Metered | Metered |
+| Model Quality | Good (M2.1) | Excellent (GPT-4) | Excellent (Claude 3.5) |
+
+> 💡 **Bottom line:** If you do 90% of your coding with AI, MiniMax saves you ~$216/year. That's significant for a side project or hobby dev.
+
+---
+
+## 🔧 Works With Your Stack
+
+The best part? No setup headaches. MiniMax integrates directly with tools you already use:
+
+- \`Cursor\` — Popular AI-powered IDE
+- \`Claude Code\` — Anthropic's CLI tool
+- \`Cline\` — VS Code AI assistant
+- \`Roo Code\` — Coding AI agent
+- \`OpenCode\` — Multi-agent coding system
+- \`Kilo Code\` — Code generation tool
+- \`Trae\` — AI coding companion
+- \`Grok CLI\` — xAI's developer tool
+- \`Codex CLI\` — OpenAI's CLI
+- \`Droid\` — Android development AI
+
+Just swap in your MiniMax API key and you're good to go. No migration needed.
+
+---
+
+## ⏰ Limited Time Offer
+
+> 🎉 **Get 10% off your subscription** through this referral link. I get API credits, you get cheaper AI. Win-win!
+
+The $2/month pricing is a **limited-time launch offer** ending January 15, 2026. After that, it bumps to $5/month — still cheaper than the competition, but grab it now to lock in the lowest rate.
+
+---
+
+## 📝 My Experience
+
+I've been using MiniMax for about two weeks now. Here's my honest take:
+
+**✅ Pros:**
+- **Significantly cheaper** than the alternatives
+- **Wide tool compatibility** — works with everything I tested
+- **Decent coding performance** for everyday tasks (boilerplate, refactoring, debugging)
+- **Unlimited API calls** means I don't have to ration usage
+- **Fast response times** — on par with GPT-4 for simple queries
+
+**❌ Cons:**
+- **Not Claude 3.5 level** — complex reasoning and architectural decisions aren't as strong
+- **Less documentation** — fewer examples and community resources
+- **Newer ecosystem** — troubleshooting can be hit-or-miss
+- *Occasionally* hallucinates on edge-case APIs
+
+**Verdict:** Perfect for 80% of coding tasks. When I need serious architectural thinking, I still reach for Claude 3.5 or GPT-4. But for day-to-day coding? MiniMax is *plenty* capable.
+
+---
+
+## 🔗 Want to Try It?
+
+[**🚀 Get MiniMax Coding Plan (10% off)**](https://minimax.ai/referral-link-here)
+
+Setup takes 5 minutes:
+1. Sign up and grab your API key
+2. Plug it into your tool of choice
+3. Start coding for $2/month
+
+*Still not sure? The free tier lets you test it out before committing.*
+
+---
+
+## 📊 Quick Comparison
+
+**MiniMax M2.1 vs the rest:**
+
+\`\`\`python
+# MiniMax — $2/month
+response = minimax.generate("Create a REST API with Flask")
+# Fast, competent, gets 80% of the way there
+
+# Claude 3.5 Sonnet — $20/month
+response = claude.generate("Create a REST API with Flask")
+# Slower, more thoughtful, gets 95% of the way there
+
+# GPT-4 — $20/month
+response = openai.generate("Create a REST API with Flask")
+# Reliable, well-documented, gets 90% of the way there
+\`\`\`
+
+For 20% of the price, you get 80-90% of the quality. **The math makes sense for most developers.**
+
+---
+
+*Disclosure: This is my referral link. You get 10% off your subscription, I get API credits to keep coding. Thanks for supporting! If referral links bother you, you can also sign up directly — just search for "MiniMax Coding Plan".*`;
+
+            navigator.clipboard.writeText(markdown).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                btn.style.backgroundColor = '#46D160';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.backgroundColor = '#0079D3';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

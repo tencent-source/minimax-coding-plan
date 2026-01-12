@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Post - Copy & Paste</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1a1a1b; margin-bottom: 16px; font-size: 20px; }
+        h2 { color: #DC2626; margin-bottom: 12px; font-size: 16px; }
+        .copy-btn {
+            background: #DC2626;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        .copy-btn:hover { background: #E53935; }
+        .copy-btn:active { transform: scale(0.98); }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            background: #fafafa;
+        }
+        textarea:focus { outline: none; border-color: #DC2626; }
+        .community-list { display: grid; gap: 12px; }
+        .community {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            border-left: 4px solid #DC2626;
+        }
+        .community-name { font-weight: 600; color: #1a1a1b; }
+        .community-link {
+            color: #DC2626;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .community-link:hover { text-decoration: underline; }
+        .tier-badge {
+            background: #F59E0B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .tier-1 { background: #10B981; }
+        .tier-2 { background: #3B82F6; }
+        .tier-3 { background: #8B5CF6; }
+        .stats {
+            background: linear-gradient(135deg, #DC2626, #F59E0B);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .stats strong { font-size: 24px; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            display: none;
+        }
+        .toast.show { display: block; }
+    </style>
+</head>
+<body>
+    <div class="stats">
+        <strong>10 Communities</strong> • <strong>3 Tiers</strong> • Ready to Post
+    </div>
+
+    <div class="section">
+        <h1>Post Title (Copy This)</h1>
+        <button class="copy-btn" onclick="copyText('title')">Copy Title</button>
+        <textarea id="title" readonly>MiniMax Coding Plan - $2/month AI API that works with Cursor, Claude Code, Cline (+ 10% off)</textarea>
+    </div>
+
+    <div class="section">
+        <h1>Post Body (Copy This)</h1>
+        <button class="copy-btn" onclick="copyText('body')">Copy Post Body</button>
+        <textarea id="body" readonly>Hey everyone,
+
+Wanted to share a deal I found for those using AI coding assistants.
+
+What is it?
+MiniMax has a "Coding Plan" - unlimited API access to their M2.1 model for $2/month (starter tier). It works with basically every AI coding tool:
+
+- Cursor
+- Claude Code
+- Cline
+- Roo Code
+- OpenCode
+- Kilo Code
+- Trae
+- Grok CLI
+- Codex CLI
+- Droid
+
+Why it's interesting:
+- Way cheaper than OpenAI/Anthropic API costs
+- M2.1 is surprisingly capable for coding tasks
+- Works as a drop-in replacement in most tools
+
+The deal:
+- $2/month starter plan runs until Jan 15, 2026
+- Referral program gives 10% off your first payment
+
+If you want to try it: https://tencent-source.github.io/minimax-coding-plan/
+
+That's my referral page - you get 10% off, I get some API credits. Win-win.
+
+Anyone else tried it? Curious what others think of M2.1 for coding.</textarea>
+    </div>
+
+    <div class="section">
+        <h1>Communities to Post (Ranked by Fit)</h1>
+
+        <h2>Tier 1 - Post First (Highest Engagement)</h2>
+        <div class="community-list">
+            <div class="community">
+                <span class="community-name">r/LocalLLaMA</span>
+                <div>
+                    <span class="tier-badge tier-1">BEST FIT</span>
+                    <a href="https://reddit.com/r/LocalLLaMA/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/Cursor</span>
+                <div>
+                    <span class="tier-badge tier-1">BEST FIT</span>
+                    <a href="https://reddit.com/r/Cursor/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/Claude</span>
+                <div>
+                    <span class="tier-badge tier-1">BEST FIT</span>
+                    <a href="https://reddit.com/r/Claude/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top:24px">Tier 2 - Cross-Post After 24h</h2>
+        <div class="community-list">
+            <div class="community">
+                <span class="community-name">r/SideProject</span>
+                <div>
+                    <span class="tier-badge tier-2">GOOD FIT</span>
+                    <a href="https://reddit.com/r/SideProject/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/Artificial</span>
+                <div>
+                    <span class="tier-badge tier-2">GOOD FIT</span>
+                    <a href="https://reddit.com/r/Artificial/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/MachineLearning</span>
+                <div>
+                    <span class="tier-badge tier-2">GOOD FIT</span>
+                    <a href="https://reddit.com/r/MachineLearning/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top:24px">Tier 3 - If Still Engaged</h2>
+        <div class="community-list">
+            <div class="community">
+                <span class="community-name">r/programming</span>
+                <div>
+                    <span class="tier-badge tier-3">DECENT</span>
+                    <a href="https://reddit.com/r/programming/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/webdev</span>
+                <div>
+                    <span class="tier-badge tier-3">DECENT</span>
+                    <a href="https://reddit.com/r/webdev/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/opensource</span>
+                <div>
+                    <span class="tier-badge tier-3">DECENT</span>
+                    <a href="https://reddit.com/r/opensource/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+            <div class="community">
+                <span class="community-name">r/devops</span>
+                <div>
+                    <span class="tier-badge tier-3">DECENT</span>
+                    <a href="https://reddit.com/r/devops/submit" target="_blank" class="community-link">Post →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h1>Posting Strategy</h1>
+        <div style="line-height:1.8;color:#374151">
+            <p><strong>Day 1:</strong> Post to r/LocalLLaMA, r/Cursor, r/Claude (all at once)</p>
+            <p><strong>Day 1-2:</strong> Engage with comments, answer questions</p>
+            <p><strong>Day 2-3:</strong> If gaining traction, cross-post to Tier 2 communities</p>
+            <p><strong>Day 3-4:</strong> If still engaged, post to Tier 3</p>
+            <p style="margin-top:16px;color:#DC2626"><strong>Important:</strong> Wait 24h before cross-posting to avoid spam filters</p>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Copied to clipboard!</div>
+
+    <script>
+        function copyText(id) {
+            document.getElementById(id).select();
+            document.execCommand('copy');
+            document.getElementById('toast').classList.add('show');
+            setTimeout(() => document.getElementById('toast').classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+</html>
