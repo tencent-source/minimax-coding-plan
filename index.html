@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniMax Coding Plan - Get 10% OFF | AI API for Developers</title>
+    <meta name="description" content="Get 10% OFF MiniMax Coding Plan. Unlimited AI API access for Claude Code, Cursor, Cline, and more. Join thousands of developers using MiniMax M2.1 for AI-powered coding.">
+    <meta name="keywords" content="MiniMax, AI API, Coding Plan, Claude Code, Cursor, Cline, AI coding assistant, developer tools, API discount">
+    <meta name="author" content="MiniMax">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MiniMax Coding Plan - Get 10% OFF">
+    <meta property="og:description" content="Unlimited AI API access for developers. Works with Claude Code, Cursor, Cline, and 10+ AI coding tools.">
+    <meta property="og:url" content="https://minimax-dev.github.io/coding-plan/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MiniMax Coding Plan - 10% OFF">
+    <meta name="twitter:description" content="AI API for developers. Works with Claude Code, Cursor, Cline, and more.">
+    <link rel="canonical" href="https://minimax-dev.github.io/coding-plan/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "MiniMax Coding Plan",
+      "description": "Unlimited AI API access for developers",
+      "brand": {"@type": "Brand", "name": "MiniMax"},
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "2",
+        "priceValidUntil": "2026-02-28",
+        "availability": "https://schema.org/InStock",
+        "url": "https://platform.minimax.io/subscribe/coding-plan?code=6A7d87ipnt&source=link"
+      }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-light: #1a1a1a;
+            --accent-red: #DC2626;
+            --accent-red-light: #E53935;
+            --accent-gold: #F59E0B;
+            --accent-gold-light: #FBBF24;
+            --text-white: #ffffff;
+            --text-gray: #9CA3AF;
+            --text-gold: #FEF3C7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 50%, var(--bg-dark) 100%);
+            color: var(--text-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Decorative pattern overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23DC2626' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-light));
+            color: var(--text-white);
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            text-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subheadline {
+            font-size: clamp(18px, 3vw, 28px);
+            color: var(--text-gray);
+            margin-bottom: 48px;
+            max-width: 700px;
+        }
+
+        /* Main CTA Button */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            color: var(--text-white);
+            text-decoration: none;
+            padding: 24px 56px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 12px;
+            box-shadow: 0 8px 40px rgba(220, 38, 38, 0.6), 0 0 80px rgba(220, 38, 38, 0.3);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 60px rgba(220, 38, 38, 0.8), 0 0 100px rgba(220, 38, 38, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 40px rgba(220, 38, 38, 0.6), 0 0 80px rgba(220, 38, 38, 0.3); }
+            50% { box-shadow: 0 8px 50px rgba(220, 38, 38, 0.8), 0 0 100px rgba(220, 38, 38, 0.5); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 18px;
+            margin-bottom: 60px;
+        }
+
+        .section-title .accent {
+            color: var(--accent-gold);
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-gold), var(--accent-red));
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 20px 60px rgba(220, 38, 38, 0.2);
+        }
+
+        .benefit-card .card-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        .benefit-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-white);
+        }
+
+        .benefit-card .subtitle {
+            color: var(--accent-gold);
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .benefit-card ul {
+            list-style: none;
+        }
+
+        .benefit-card li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            color: var(--text-gray);
+            font-size: 16px;
+        }
+
+        .benefit-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Compatible Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .tool-card {
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: 16px;
+            padding: 32px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+        }
+
+        .tool-card:hover {
+            background: rgba(220, 38, 38, 0.1);
+            border-color: rgba(245, 158, 11, 0.4);
+            transform: translateY(-4px);
+        }
+
+        .tool-card .tool-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+            color: var(--text-white);
+        }
+
+        .tool-card span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-red), var(--accent-gold), var(--accent-red));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 40px;
+            position: relative;
+            margin-bottom: 48px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 40px;
+            margin-left: 50%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            width: 24px;
+            height: 24px;
+            background: var(--bg-dark);
+            border: 4px solid var(--accent-gold);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: auto;
+            left: -10px;
+            border-color: var(--accent-red);
+        }
+
+        .timeline-content {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 320px;
+        }
+
+        .timeline-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content .date {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            color: var(--text-white);
+        }
+
+        .timeline-content .highlight {
+            color: var(--accent-red-light);
+            font-weight: 700;
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            text-align: center;
+            padding: 120px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .final-cta .accent {
+            color: var(--accent-gold);
+        }
+
+        .final-cta .big-cta {
+            font-size: 24px;
+            padding: 28px 72px;
+            margin-top: 40px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid rgba(245, 158, 11, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .brand {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        footer .docs-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        footer .docs-link:hover {
+            color: var(--accent-gold);
+        }
+
+        footer .copyright {
+            color: rgba(156, 163, 175, 0.5);
+            font-size: 12px;
+            margin-top: 16px;
+        }
+
+        /* Decorative elements */
+        .decoration {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .decoration-1 {
+            top: 200px;
+            left: 50px;
+            width: 200px;
+            height: 200px;
+            border: 2px solid var(--accent-red);
+            border-radius: 50%;
+        }
+
+        .decoration-2 {
+            bottom: 300px;
+            right: 50px;
+            width: 150px;
+            height: 150px;
+            background: var(--accent-gold);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 16px;
+            }
+
+            .cta-button {
+                padding: 20px 40px;
+                font-size: 18px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 8px;
+                right: auto;
+            }
+
+            .timeline-content {
+                max-width: 100%;
+            }
+
+            .final-cta {
+                padding: 80px 16px;
+            }
+
+            .final-cta .big-cta {
+                font-size: 20px;
+                padding: 20px 48px;
+            }
+
+            .decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="animate">
+                    <span class="hero-badge">Limited Time Offer</span>
+                </div>
+
+                <h1 class="animate delay-1">
+                    Get <span class="highlight">10% OFF</span> MiniMax<br>Coding Plan
+                </h1>
+
+                <p class="subheadline animate delay-2">
+                    Unlimited AI API access for developers. Works with Claude Code, Cursor, and 10+ coding tools.
+                </p>
+
+                <a href="https://platform.minimax.io/subscribe/coding-plan?code=6A7d87ipnt&source=link" class="cta-button animate delay-3" aria-label="Claim your 10% discount on MiniMax Coding Plan">
+                    🚀 Claim Your 10% Discount
+                </a>
+            </div>
+
+            <div class="decoration decoration-1"></div>
+            <div class="decoration decoration-2"></div>
+        </section>
+
+        <section id="benefits">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="accent">Double Rewards</span> for Everyone
+                </h2>
+                <p class="section-subtitle">
+                    Both you and your friends earn valuable rewards
+                </p>
+
+                <div class="benefits-grid">
+                    <article class="benefit-card">
+                        <div class="card-icon">🎉</div>
+                        <h3>For Your Friends</h3>
+                        <p class="subtitle">When They Sign Up</p>
+                        <ul>
+                            <li><strong>10% OFF</strong> their first payment</li>
+                            <li>Works with all Coding Plan tiers</li>
+                            <li>Stacks with $2/month starter deal</li>
+                            <li>Builder status in developer community</li>
+                        </ul>
+                    </article>
+
+                    <article class="benefit-card">
+                        <div class="card-icon">💰</div>
+                        <h3>For You</h3>
+                        <p class="subtitle">When Friends Sign Up</p>
+                        <ul>
+                            <li>Earn <strong>10%</strong> of their payment as API credits</li>
+                            <li>Credits valid for 90 days</li>
+                            <li>Priority access to new MiniMax models</li>
+                            <li>Join the developer community</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <div class="container">
+                <h2 class="section-title">
+                    Works with <span class="accent">10+ Tools</span>
+                </h2>
+                <p class="section-subtitle">
+                    Seamlessly integrate with your favorite AI coding assistants
+                </p>
+
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">CC</div>
+                        <span>Claude Code</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">CS</div>
+                        <span>Cursor</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">TR</div>
+                        <span>Trae</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">OC</div>
+                        <span>OpenCode</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">KC</div>
+                        <span>Kilo Code</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">CL</div>
+                        <span>Cline</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">RC</div>
+                        <span>Roo Code</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">GC</div>
+                        <span>Grok CLI</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">DX</div>
+                        <span>Codex CLI</span>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">DR</div>
+                        <span>Droid</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="accent">Promo Timeline</span>
+                </h2>
+                <p class="section-subtitle">
+                    Don't miss out on these limited-time offers
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>$2 Starter Monthly</h4>
+                            <div class="date">Dec 26, 2025 – Jan 15, 2026</div>
+                            <p><span class="highlight">$2/month</span> new user exclusive deal</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Referral Program</h4>
+                            <div class="date">Dec 26, 2025 – Feb 28, 2026</div>
+                            <p>Extended through <span class="highlight">New Year period</span></p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Final Countdown</h4>
+                            <div class="date">Limited Time Only</div>
+                            <p>Act now before the offer expires</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <div class="container">
+                <h2>
+                    Ready to <span class="accent">Save</span> on AI API Costs?
+                </h2>
+                <p class="subheadline">
+                    Join thousands of developers already using MiniMax
+                </p>
+                <a href="https://platform.minimax.io/subscribe/coding-plan?code=6A7d87ipnt&source=link" class="cta-button big-cta" aria-label="Get 10% OFF on MiniMax Coding Plan now">
+                    🚀 Get 10% OFF Now
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="brand">🔥 MiniMax</div>
+            <a href="https://platform.minimax.io/docs/coding-plan/promotion" class="docs-link" rel="noopener noreferrer">
+                📖 View Official Documentation
+            </a>
+            <p class="copyright">© 2025-2026 MiniMax. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
