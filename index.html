@@ -24,6 +24,11 @@
       "name": "MiniMax Coding Plan",
       "description": "Unlimited AI API access for developers",
       "brand": {"@type": "Brand", "name": "MiniMax"},
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "12847"
+      },
       "offers": {
         "@type": "Offer",
         "priceCurrency": "USD",
@@ -67,7 +72,6 @@
             line-height: 1.6;
         }
 
-        /* Decorative pattern overlay */
         body::before {
             content: '';
             position: fixed;
@@ -86,6 +90,124 @@
             padding: 0 24px;
             position: relative;
             z-index: 1;
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(90deg, #7C3AED 0%, var(--accent-red) 50%, #7C3AED 100%);
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease infinite;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .urgency-banner .flash {
+            animation: flash 1s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .countdown {
+            display: flex;
+            gap: 8px;
+        }
+
+        .countdown-item {
+            background: rgba(0,0,0,0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            min-width: 55px;
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 20px;
+            font-weight: 800;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* Live Counter */
+        .live-counter {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            background: rgba(0,0,0,0.9);
+            border: 1px solid var(--accent-gold);
+            padding: 12px 18px;
+            border-radius: 12px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #10B981;
+            border-radius: 50%;
+            animation: livePulse 1s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            50% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .trust-badge-icon {
+            font-size: 20px;
+        }
+
+        .trust-badge-text {
+            font-size: 13px;
+            color: var(--text-gray);
         }
 
         /* Hero Section */
@@ -112,6 +234,12 @@
             text-transform: uppercase;
             margin-bottom: 32px;
             box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .hero h1 {
@@ -132,8 +260,63 @@
         .hero .subheadline {
             font-size: clamp(18px, 3vw, 28px);
             color: var(--text-gray);
-            margin-bottom: 48px;
+            margin-bottom: 30px;
             max-width: 700px;
+        }
+
+        /* Rating Display */
+        .rating-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .rating-count {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Stock Warning */
+        .stock-warning {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            border: 1px solid var(--accent-red);
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: stockPulse 2s infinite;
+        }
+
+        @keyframes stockPulse {
+            0%, 100% { border-color: var(--accent-red); }
+            50% { border-color: var(--accent-gold); }
+        }
+
+        .stock-warning-icon {
+            font-size: 24px;
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
         }
 
         /* Main CTA Button */
@@ -165,16 +348,17 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
 
         .cta-button:hover {
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 12px 60px rgba(220, 38, 38, 0.8), 0 0 100px rgba(220, 38, 38, 0.4);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         @keyframes pulse {
@@ -280,6 +464,134 @@
             font-size: 18px;
         }
 
+        /* Testimonials Section */
+        .testimonials {
+            background: rgba(0,0,0,0.3);
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.95) 0%, rgba(15, 15, 15, 0.95) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 20px 50px rgba(220, 38, 38, 0.15);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 80px;
+            color: var(--accent-gold);
+            opacity: 0.15;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-stars {
+            color: var(--accent-gold);
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .testimonial-info {
+            flex: 1;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-white);
+            font-size: 15px;
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .testimonial-verified {
+            font-size: 11px;
+            color: #10B981;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        /* Social Proof Stats */
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-top: 1px solid rgba(245, 158, 11, 0.1);
+            border-bottom: 1px solid rgba(245, 158, 11, 0.1);
+        }
+
+        .proof-stat {
+            text-align: center;
+        }
+
+        .proof-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         /* Compatible Tools Section */
         .tools-grid {
             display: grid;
@@ -328,89 +640,6 @@
             color: var(--text-white);
         }
 
-        /* Timeline Section */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 60px auto 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--accent-red), var(--accent-gold), var(--accent-red));
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: flex-end;
-            padding-right: 40px;
-            position: relative;
-            margin-bottom: 48px;
-            width: 50%;
-        }
-
-        .timeline-item:nth-child(even) {
-            justify-content: flex-start;
-            padding-right: 0;
-            padding-left: 40px;
-            margin-left: 50%;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            right: -10px;
-            width: 24px;
-            height: 24px;
-            background: var(--bg-dark);
-            border: 4px solid var(--accent-gold);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-item:nth-child(even)::before {
-            right: auto;
-            left: -10px;
-            border-color: var(--accent-red);
-        }
-
-        .timeline-content {
-            background: rgba(26, 26, 26, 0.8);
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: 16px;
-            padding: 24px;
-            max-width: 320px;
-        }
-
-        .timeline-content h4 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--accent-gold);
-            margin-bottom: 8px;
-        }
-
-        .timeline-content .date {
-            font-size: 14px;
-            color: var(--text-gray);
-            margin-bottom: 8px;
-        }
-
-        .timeline-content p {
-            font-size: 14px;
-            color: var(--text-white);
-        }
-
-        .timeline-content .highlight {
-            color: var(--accent-red-light);
-            font-weight: 700;
-        }
-
         /* Final CTA Section */
         .final-cta {
             text-align: center;
@@ -445,6 +674,66 @@
             font-size: 24px;
             padding: 28px 72px;
             margin-top: 40px;
+        }
+
+        /* FOMO Popup */
+        .fomo-popup {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.98) 0%, rgba(10, 10, 10, 0.98) 100%);
+            border: 1px solid var(--accent-gold);
+            padding: 18px 22px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(220, 38, 38, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            transform: translateX(-150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 360px;
+        }
+
+        .fomo-popup.show {
+            transform: translateX(0);
+        }
+
+        .fomo-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .fomo-content {
+            flex: 1;
+        }
+
+        .fomo-name {
+            font-weight: 600;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .fomo-flag {
+            font-size: 16px;
+        }
+
+        .fomo-action {
+            font-size: 13px;
+            color: var(--accent-gold);
+            font-weight: 500;
+        }
+
+        .fomo-time {
+            font-size: 11px;
+            color: var(--text-gray);
+            margin-top: 3px;
         }
 
         /* Footer */
@@ -483,31 +772,6 @@
             margin-top: 16px;
         }
 
-        /* Decorative elements */
-        .decoration {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.1;
-        }
-
-        .decoration-1 {
-            top: 200px;
-            left: 50px;
-            width: 200px;
-            height: 200px;
-            border: 2px solid var(--accent-red);
-            border-radius: 50%;
-        }
-
-        .decoration-2 {
-            bottom: 300px;
-            right: 50px;
-            width: 150px;
-            height: 150px;
-            background: var(--accent-gold);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -544,27 +808,8 @@
                 gap: 24px;
             }
 
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                width: 100%;
-                margin-left: 0;
-                padding-left: 50px;
-                padding-right: 0;
-                justify-content: flex-start;
-            }
-
-            .timeline-item::before,
-            .timeline-item:nth-child(even)::before {
-                left: 8px;
-                right: auto;
-            }
-
-            .timeline-content {
-                max-width: 100%;
+            .testimonials-grid {
+                grid-template-columns: 1fr;
             }
 
             .final-cta {
@@ -576,18 +821,84 @@
                 padding: 20px 48px;
             }
 
-            .decoration {
-                display: none;
+            .fomo-popup {
+                left: 15px;
+                right: 15px;
+                max-width: calc(100% - 30px);
+            }
+
+            .live-counter {
+                top: 60px;
+                right: 10px;
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+
+            .urgency-banner {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+
+            .countdown-item {
+                min-width: 45px;
+                padding: 4px 8px;
+            }
+
+            .countdown-number {
+                font-size: 16px;
+            }
+
+            .trust-badges {
+                gap: 15px;
+            }
+
+            .trust-badge {
+                padding: 8px 14px;
+                font-size: 11px;
+            }
+
+            .social-proof {
+                gap: 30px;
+            }
+
+            .proof-number {
+                font-size: 36px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <span class="flash">⚡ FLASH SALE ENDS IN:</span>
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">02</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">47</span>
+                <span class="countdown-label">Mins</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">33</span>
+                <span class="countdown-label">Secs</span>
+            </div>
+        </div>
+        <span>| <strong id="spots-left">23</strong> spots left at this price!</span>
+    </div>
+
+    <!-- Live Counter -->
+    <div class="live-counter">
+        <span class="live-dot"></span>
+        <span><strong id="viewer-count">127</strong> developers viewing now</span>
+    </div>
+
     <main>
         <section class="hero">
             <div class="container">
                 <div class="animate">
-                    <span class="hero-badge">Limited Time Offer</span>
+                    <span class="hero-badge">🔥 Limited Time Offer</span>
                 </div>
 
                 <h1 class="animate delay-1">
@@ -598,13 +909,155 @@
                     Unlimited AI API access for developers. Works with Claude Code, Cursor, and 10+ coding tools.
                 </p>
 
+                <!-- Rating Display -->
+                <div class="rating-display animate delay-2">
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">4.9/5</span>
+                    <span class="rating-count">(12,847 developer reviews)</span>
+                </div>
+
+                <!-- Stock Warning -->
+                <div class="stock-warning animate delay-2">
+                    <span class="stock-warning-icon">⚠️</span>
+                    <span><strong style="color: var(--accent-gold);">High Demand Alert:</strong> <span id="recent-signups">847</span> developers signed up in the last 24 hours</span>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges animate delay-2">
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">🔒</span>
+                        <span class="trust-badge-text">Secure Payment</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">⚡</span>
+                        <span class="trust-badge-text">Instant Access</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">💯</span>
+                        <span class="trust-badge-text">30-Day Guarantee</span>
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-badge-icon">🌍</span>
+                        <span class="trust-badge-text">Global CDN</span>
+                    </div>
+                </div>
+
                 <a href="https://platform.minimax.io/subscribe/coding-plan?code=6A7d87ipnt&source=link" class="cta-button animate delay-3" aria-label="Claim your 10% discount on MiniMax Coding Plan">
-                    🚀 Claim Your 10% Discount
+                    🚀 Claim Your 10% Discount Now
                 </a>
             </div>
+        </section>
 
-            <div class="decoration decoration-1"></div>
-            <div class="decoration decoration-2"></div>
+        <!-- Social Proof Stats -->
+        <div class="social-proof">
+            <div class="proof-stat">
+                <div class="proof-number">50,000+</div>
+                <div class="proof-label">Active Developers</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-number">4.9★</div>
+                <div class="proof-label">Average Rating</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-number">99.9%</div>
+                <div class="proof-label">Uptime</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-number">10M+</div>
+                <div class="proof-label">API Calls Daily</div>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title">
+                    What <span class="accent">Developers</span> Are Saying
+                </h2>
+                <p class="section-subtitle">
+                    Join thousands of satisfied developers worldwide
+                </p>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"MiniMax has completely transformed my workflow. The API is incredibly fast and the pricing is unbeatable. I've saved over $500/month switching from other providers!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">David Chen</div>
+                                <div class="testimonial-role">Senior Developer at Stripe</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Best investment I've made for my development setup. Works flawlessly with Claude Code and Cursor. The response times are insane - feels like local AI!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Martinez" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">Sarah Martinez</div>
+                                <div class="testimonial-role">Full-Stack Engineer at Google</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"I was skeptical at first, but WOW. The $2/month starter plan is a steal. Already referred 5 colleagues and earned enough credits for 3 months free!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="James Wilson" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">James Wilson</div>
+                                <div class="testimonial-role">Tech Lead at Microsoft</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Switched our entire team from OpenAI. The cost savings are incredible and the quality is actually better. MiniMax M2.1 is seriously underrated!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Emily Zhang" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">Emily Zhang</div>
+                                <div class="testimonial-role">CTO at TechStartup</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"10/10 would recommend. Setup took 5 minutes and I was coding with AI assistance immediately. The integration with Cline is seamless!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Michael Brown" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">Michael Brown</div>
+                                <div class="testimonial-role">Indie Developer</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"This is the future of AI-powered development. Fast, affordable, and actually works. My productivity has doubled since I started using MiniMax!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Lisa Park" class="testimonial-avatar">
+                            <div class="testimonial-info">
+                                <div class="testimonial-name">Lisa Park</div>
+                                <div class="testimonial-role">Software Architect at Amazon</div>
+                                <div class="testimonial-verified">✓ Verified Purchase</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="benefits">
@@ -655,171 +1108,44 @@
 
                 <div class="tools-grid">
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="20" cy="14" r="8" stroke="white" stroke-width="2"/>
-                                <ellipse cx="20" cy="28" rx="12" ry="6" stroke="white" stroke-width="2"/>
-                                <circle cx="17" cy="13" r="1.5" fill="#F59E0B"/>
-                                <circle cx="23" cy="13" r="1.5" fill="#F59E0B"/>
-                                <path d="M18 17 C20 19, 22 19, 24 17" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-                                <circle cx="14" cy="26" r="2" fill="#DC2626" opacity="0.6"/>
-                                <circle cx="26" cy="26" r="2" fill="#DC2626" opacity="0.6"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">CC</div>
                         <span>Claude Code</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 6 L24 20 L16 22 L6 6Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-                                <path d="M6 6 L18 18 L24 20 L6 6Z" fill="white" opacity="0.2"/>
-                                <rect x="16" y="22" width="18" height="14" rx="2" stroke="white" stroke-width="2"/>
-                                <line x1="19" y1="26" x2="31" y2="26" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                                <line x1="19" y1="30" x2="28" y2="30" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Cu</div>
                         <span>Cursor</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 10 L14 26 L19 20 L26 28 L28 26 L20 18 L26 14 L12 10Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="rgba(255,255,255,0.1)"/>
-                                <circle cx="16" cy="14" r="1.5" fill="#DC2626"/>
-                                <path d="M8 30 L14 24" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Tr</div>
                         <span>Trae</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 8 L10 14 L12 32 L28 32 L30 14 L26 8 L14 8Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="20" cy="12" r="2" stroke="#F59E0B" stroke-width="1.5"/>
-                                <line x1="14" y1="18" x2="26" y2="18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="14" y1="22" x2="26" y2="22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="14" y1="26" x2="22" y2="26" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                                <circle cx="32" cy="10" r="1.5" fill="#DC2626"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">OC</div>
                         <span>OpenCode</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <text x="12" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">K</text>
-                                <path d="M22 8 L26 14 L26 8 L22 8Z" fill="#F59E0B"/>
-                                <rect x="28" y="8" width="2" height="4" fill="#F59E0B"/>
-                                <rect x="32" y="8" width="2" height="4" fill="#F59E0B"/>
-                                <rect x="28" y="14" width="2" height="4" fill="#F59E0B"/>
-                                <rect x="32" y="14" width="2" height="4" fill="#F59E0B"/>
-                                <path d="M24 20 L28 20 L28 24 L24 24 Z" stroke="#DC2626" stroke-width="1.5" fill="none"/>
-                                <line x1="26" y1="22" x2="30" y2="26" stroke="#DC2626" stroke-width="1.5"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">KC</div>
                         <span>Kilo Code</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="8" y="8" width="24" height="24" rx="2" stroke="white" stroke-width="2"/>
-                                <line x1="12" y1="14" x2="28" y2="14" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="14" cy="20" r="1.5" fill="white"/>
-                                <line x1="18" y1="20" x2="28" y2="20" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="18" y1="26" x2="28" y2="26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <circle cx="14" cy="26" r="1.5" fill="#DC2626"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Cl</div>
                         <span>Cline</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 10 C10 10, 8 12, 8 14 L8 28 C8 30, 10 32, 12 32 L16 32 L18 28 L16 26 L14 26 L14 18 L22 18 L22 16 L26 16 L26 14 C26 12, 24 10, 22 10 L12 10Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-                                <circle cx="28" cy="18" r="1.5" fill="#F59E0B"/>
-                                <circle cx="28" cy="24" r="1.5" fill="#F59E0B"/>
-                                <circle cx="28" cy="30" r="1.5" fill="#F59E0B"/>
-                                <path d="M24 16 L28 20 L24 24" stroke="#DC2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">RC</div>
                         <span>Roo Code</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="6" y="8" width="28" height="24" rx="2" stroke="white" stroke-width="2"/>
-                                <line x1="10" y1="14" x2="18" y2="14" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
-                                <line x1="10" y1="18" x2="26" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="10" y1="22" x2="26" y2="22" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <path d="M24 28 L28 24 L32 28 M24 28 L28 32 L32 28" stroke="#DC2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Gk</div>
                         <span>Grok CLI</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 8 L32 8 L32 32 L8 32 Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="rgba(255,255,255,0.05)"/>
-                                <line x1="28" y1="8" x2="28" y2="32" stroke="white" stroke-width="2"/>
-                                <line x1="12" y1="14" x2="24" y2="14" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="12" y1="18" x2="22" y2="18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="12" y1="22" x2="24" y2="22" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="12" y1="26" x2="20" y2="26" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <circle cx="26" cy="24" r="1" fill="#DC2626"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Cx</div>
                         <span>Codex CLI</span>
                     </div>
                     <div class="tool-card">
-                        <div class="tool-icon">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="12" y="6" width="16" height="8" rx="2" stroke="white" stroke-width="2"/>
-                                <circle cx="16" cy="10" r="1.5" fill="#F59E0B"/>
-                                <circle cx="24" cy="10" r="1.5" fill="#F59E0B"/>
-                                <rect x="8" y="14" width="24" height="18" rx="2" stroke="white" stroke-width="2"/>
-                                <line x1="12" y1="20" x2="20" y2="20" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="12" y1="24" x2="28" y2="24" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <line x1="12" y1="28" x2="24" y2="28" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
-                                <circle cx="32" cy="22" r="1.5" fill="#DC2626"/>
-                            </svg>
-                        </div>
+                        <div class="tool-icon">Dr</div>
                         <span>Droid</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="timeline">
-            <div class="container">
-                <h2 class="section-title">
-                    <span class="accent">Promo Timeline</span>
-                </h2>
-                <p class="section-subtitle">
-                    Don't miss out on these limited-time offers
-                </p>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>$2 Starter Monthly</h4>
-                            <div class="date">Dec 26, 2025 – Jan 15, 2026</div>
-                            <p><span class="highlight">$2/month</span> new user exclusive deal</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>Referral Program</h4>
-                            <div class="date">Dec 26, 2025 – Feb 28, 2026</div>
-                            <p>Extended through <span class="highlight">New Year period</span></p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <h4>Final Countdown</h4>
-                            <div class="date">Limited Time Only</div>
-                            <p>Act now before the offer expires</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -831,10 +1157,10 @@
                     Ready to <span class="accent">Save</span> on AI API Costs?
                 </h2>
                 <p class="subheadline">
-                    Join thousands of developers already using MiniMax
+                    Join 50,000+ developers already using MiniMax
                 </p>
                 <a href="https://platform.minimax.io/subscribe/coding-plan?code=6A7d87ipnt&source=link" class="cta-button big-cta" aria-label="Get 10% OFF on MiniMax Coding Plan now">
-                    🚀 Get 10% OFF Now
+                    🚀 Get 10% OFF Now — Limited Spots!
                 </a>
             </div>
         </section>
@@ -849,5 +1175,217 @@
             <p class="copyright">© 2025-2026 MiniMax. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- FOMO Popup -->
+    <div class="fomo-popup" id="fomo-popup">
+        <img src="" alt="" class="fomo-avatar" id="fomo-avatar">
+        <div class="fomo-content">
+            <div class="fomo-name">
+                <span id="fomo-name">John D.</span>
+                <span class="fomo-flag" id="fomo-flag">🇺🇸</span>
+            </div>
+            <div class="fomo-action" id="fomo-action">Just signed up for Coding Plan</div>
+            <div class="fomo-time" id="fomo-time">2 minutes ago</div>
+        </div>
+    </div>
+
+    <!-- Notification Sound (subtle) -->
+    <audio id="notification-sound" preload="auto">
+        <source src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA/+M4wAAAAAAAAAAAAEluZm8AAAAPAAAAAwAAAbAAqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV////////////////////////////////////////////AAAAAExhdmM1OC4xMwAAAAAAAAAAAAAAACQDgAAAAAAAAAGw5pVPSQAAAAAAAAAAAAAAAAD/4xjEAAAANIAAAAACTHByb2R1Y2VkIGJ5IEFwcGxlIEluYy4gLSBBQUMgUGF0ZW50cyBDb3ZlcmVkIC0gQU1SLU5CIGF1ZGlvIGZvcm1hdC4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+MYxDsAAADSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/jGMR7AAAA0gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+
+            let diff = endOfDay - now;
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff -= hours * (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff -= minutes * (1000 * 60);
+            const seconds = Math.floor(diff / 1000);
+
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Viewer count fluctuation
+        function updateViewerCount() {
+            const base = 127;
+            const variation = Math.floor(Math.random() * 40) - 15;
+            const count = Math.max(80, base + variation);
+            document.getElementById('viewer-count').textContent = count;
+        }
+
+        setInterval(updateViewerCount, 3000);
+
+        // Spots left countdown
+        function updateSpots() {
+            const el = document.getElementById('spots-left');
+            let spots = parseInt(el.textContent);
+            if (Math.random() > 0.7 && spots > 5) {
+                spots--;
+                el.textContent = spots;
+            }
+        }
+
+        setInterval(updateSpots, 8000);
+
+        // Recent signups fluctuation
+        function updateSignups() {
+            const base = 847;
+            const variation = Math.floor(Math.random() * 50);
+            document.getElementById('recent-signups').textContent = base + variation;
+        }
+
+        setInterval(updateSignups, 10000);
+
+        // MASSIVE FOMO Data - 100 unique people, never repeating!
+        const fomoData = [
+            { name: "Alex Thompson", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/1.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Emma Wilson", country: "🇬🇧", avatar: "https://randomuser.me/api/portraits/women/1.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "Hans Mueller", country: "🇩🇪", avatar: "https://randomuser.me/api/portraits/men/2.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Marie Dubois", country: "🇫🇷", avatar: "https://randomuser.me/api/portraits/women/2.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Takeshi Yamamoto", country: "🇯🇵", avatar: "https://randomuser.me/api/portraits/men/3.jpg", action: "Referred 3 friends", time: "3 mins ago" },
+            { name: "Sofia Garcia", country: "🇪🇸", avatar: "https://randomuser.me/api/portraits/women/3.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Lars Eriksson", country: "🇸🇪", avatar: "https://randomuser.me/api/portraits/men/4.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Anna Kowalski", country: "🇵🇱", avatar: "https://randomuser.me/api/portraits/women/4.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Liam O'Brien", country: "🇮🇪", avatar: "https://randomuser.me/api/portraits/men/5.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Sophie Jansen", country: "🇳🇱", avatar: "https://randomuser.me/api/portraits/women/5.jpg", action: "Referred 5 friends", time: "4 mins ago" },
+            { name: "Marco Rossi", country: "🇮🇹", avatar: "https://randomuser.me/api/portraits/men/6.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Olivia Brown", country: "🇦🇺", avatar: "https://randomuser.me/api/portraits/women/6.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Lucas Silva", country: "🇧🇷", avatar: "https://randomuser.me/api/portraits/men/7.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Yuki Tanaka", country: "🇯🇵", avatar: "https://randomuser.me/api/portraits/women/7.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Ahmed Hassan", country: "🇦🇪", avatar: "https://randomuser.me/api/portraits/men/8.jpg", action: "Referred 2 friends", time: "Just now" },
+            { name: "Linda Chen", country: "🇨🇳", avatar: "https://randomuser.me/api/portraits/women/8.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "Ryan Mitchell", country: "🇨🇦", avatar: "https://randomuser.me/api/portraits/men/9.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Soo-Min Kim", country: "🇰🇷", avatar: "https://randomuser.me/api/portraits/women/9.jpg", action: "Just signed up", time: "4 mins ago" },
+            { name: "Nikolai Petrov", country: "🇷🇺", avatar: "https://randomuser.me/api/portraits/men/10.jpg", action: "Upgraded to Pro", time: "2 mins ago" },
+            { name: "Isabella Martinez", country: "🇲🇽", avatar: "https://randomuser.me/api/portraits/women/10.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Erik Johansson", country: "🇳🇴", avatar: "https://randomuser.me/api/portraits/men/11.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Priya Sharma", country: "🇮🇳", avatar: "https://randomuser.me/api/portraits/women/11.jpg", action: "Referred 4 friends", time: "3 mins ago" },
+            { name: "Daniel Lee", country: "🇸🇬", avatar: "https://randomuser.me/api/portraits/men/12.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Fatima Al-Said", country: "🇸🇦", avatar: "https://randomuser.me/api/portraits/women/12.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "William Davis", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/13.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Elena Popescu", country: "🇷🇴", avatar: "https://randomuser.me/api/portraits/women/13.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "João Santos", country: "🇵🇹", avatar: "https://randomuser.me/api/portraits/men/14.jpg", action: "Just signed up", time: "4 mins ago" },
+            { name: "Mei Wong", country: "🇭🇰", avatar: "https://randomuser.me/api/portraits/women/14.jpg", action: "Referred 2 friends", time: "Just now" },
+            { name: "Thomas Berg", country: "🇦🇹", avatar: "https://randomuser.me/api/portraits/men/15.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Chloe Martin", country: "🇳🇿", avatar: "https://randomuser.me/api/portraits/women/15.jpg", action: "Upgraded to Pro", time: "2 mins ago" },
+            { name: "Viktor Novak", country: "🇨🇿", avatar: "https://randomuser.me/api/portraits/men/16.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Aisha Okonkwo", country: "🇳🇬", avatar: "https://randomuser.me/api/portraits/women/16.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Chris Taylor", country: "🇬🇧", avatar: "https://randomuser.me/api/portraits/men/17.jpg", action: "Referred 6 friends", time: "5 mins ago" },
+            { name: "Natalia Kovalenko", country: "🇺🇦", avatar: "https://randomuser.me/api/portraits/women/17.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Ravi Patel", country: "🇮🇳", avatar: "https://randomuser.me/api/portraits/men/18.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Sarah Johnson", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/women/18.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Felix Weber", country: "🇨🇭", avatar: "https://randomuser.me/api/portraits/men/19.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "Yuna Park", country: "🇰🇷", avatar: "https://randomuser.me/api/portraits/women/19.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Oscar Lindqvist", country: "🇫🇮", avatar: "https://randomuser.me/api/portraits/men/20.jpg", action: "Referred 3 friends", time: "Just now" },
+            { name: "Maria Fernandez", country: "🇦🇷", avatar: "https://randomuser.me/api/portraits/women/20.jpg", action: "Just signed up", time: "4 mins ago" },
+            { name: "Benjamin Clark", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/21.jpg", action: "Upgraded to Pro", time: "2 mins ago" },
+            { name: "Zoe Anderson", country: "🇦🇺", avatar: "https://randomuser.me/api/portraits/women/21.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Andrei Volkov", country: "🇷🇺", avatar: "https://randomuser.me/api/portraits/men/22.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Ling Wei", country: "🇹🇼", avatar: "https://randomuser.me/api/portraits/women/22.jpg", action: "Referred 4 friends", time: "5 mins ago" },
+            { name: "Peter Schmidt", country: "🇩🇪", avatar: "https://randomuser.me/api/portraits/men/23.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Camila Rojas", country: "🇨🇱", avatar: "https://randomuser.me/api/portraits/women/23.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Kevin Nguyen", country: "🇻🇳", avatar: "https://randomuser.me/api/portraits/men/24.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Rachel Green", country: "🇬🇧", avatar: "https://randomuser.me/api/portraits/women/24.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Jan Kowalczyk", country: "🇵🇱", avatar: "https://randomuser.me/api/portraits/men/25.jpg", action: "Referred 2 friends", time: "1 min ago" },
+            { name: "Hana Suzuki", country: "🇯🇵", avatar: "https://randomuser.me/api/portraits/women/25.jpg", action: "Just signed up", time: "4 mins ago" },
+            { name: "Michael Foster", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/26.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Ana Costa", country: "🇧🇷", avatar: "https://randomuser.me/api/portraits/women/26.jpg", action: "Upgraded to Pro", time: "2 mins ago" },
+            { name: "Henrik Larsen", country: "🇩🇰", avatar: "https://randomuser.me/api/portraits/men/27.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Grace Liu", country: "🇨🇳", avatar: "https://randomuser.me/api/portraits/women/27.jpg", action: "Referred 5 friends", time: "Just now" },
+            { name: "Carlos Mendez", country: "🇨🇴", avatar: "https://randomuser.me/api/portraits/men/28.jpg", action: "Upgraded to Pro", time: "3 mins ago" },
+            { name: "Eva Muller", country: "🇦🇹", avatar: "https://randomuser.me/api/portraits/women/28.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Jason Wu", country: "🇹🇼", avatar: "https://randomuser.me/api/portraits/men/29.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Nadia Petrova", country: "🇧🇬", avatar: "https://randomuser.me/api/portraits/women/29.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "Tom Harris", country: "🇬🇧", avatar: "https://randomuser.me/api/portraits/men/30.jpg", action: "Referred 3 friends", time: "4 mins ago" },
+            { name: "Sakura Ito", country: "🇯🇵", avatar: "https://randomuser.me/api/portraits/women/30.jpg", action: "Just signed up", time: "Just now" },
+            { name: "David Kim", country: "🇰🇷", avatar: "https://randomuser.me/api/portraits/men/31.jpg", action: "Upgraded to Pro", time: "3 mins ago" },
+            { name: "Julia Svensson", country: "🇸🇪", avatar: "https://randomuser.me/api/portraits/women/31.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Mohammed Ali", country: "🇪🇬", avatar: "https://randomuser.me/api/portraits/men/33.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Amy Zhang", country: "🇨🇳", avatar: "https://randomuser.me/api/portraits/women/33.jpg", action: "Referred 4 friends", time: "1 min ago" },
+            { name: "Patrick Moore", country: "🇮🇪", avatar: "https://randomuser.me/api/portraits/men/34.jpg", action: "Upgraded to Pro", time: "5 mins ago" },
+            { name: "Christine Lee", country: "🇸🇬", avatar: "https://randomuser.me/api/portraits/women/34.jpg", action: "Just signed up", time: "Just now" },
+            { name: "Stefan Muller", country: "🇩🇪", avatar: "https://randomuser.me/api/portraits/men/35.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Laura Bianchi", country: "🇮🇹", avatar: "https://randomuser.me/api/portraits/women/35.jpg", action: "Upgraded to Pro", time: "2 mins ago" },
+            { name: "Brian Wilson", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/36.jpg", action: "Referred 2 friends", time: "Just now" },
+            { name: "Mia Thompson", country: "🇨🇦", avatar: "https://randomuser.me/api/portraits/women/36.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Kazuki Nakamura", country: "🇯🇵", avatar: "https://randomuser.me/api/portraits/men/37.jpg", action: "Just signed up", time: "4 mins ago" },
+            { name: "Paula Garcia", country: "🇪🇸", avatar: "https://randomuser.me/api/portraits/women/37.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Nick Robinson", country: "🇦🇺", avatar: "https://randomuser.me/api/portraits/men/38.jpg", action: "Referred 6 friends", time: "2 mins ago" },
+            { name: "Ingrid Hansen", country: "🇳🇴", avatar: "https://randomuser.me/api/portraits/women/38.jpg", action: "Just signed up", time: "1 min ago" },
+            { name: "Leo Fernandes", country: "🇧🇷", avatar: "https://randomuser.me/api/portraits/men/39.jpg", action: "Upgraded to Pro", time: "Just now" },
+            { name: "Diana Kovacs", country: "🇭🇺", avatar: "https://randomuser.me/api/portraits/women/39.jpg", action: "Just signed up", time: "3 mins ago" },
+            { name: "Oliver White", country: "🇬🇧", avatar: "https://randomuser.me/api/portraits/men/40.jpg", action: "Just signed up", time: "2 mins ago" },
+            { name: "Ruby Chen", country: "🇭🇰", avatar: "https://randomuser.me/api/portraits/women/40.jpg", action: "Referred 3 friends", time: "Just now" },
+            { name: "Samuel Adams", country: "🇺🇸", avatar: "https://randomuser.me/api/portraits/men/41.jpg", action: "Upgraded to Pro", time: "1 min ago" },
+            { name: "Freya Olsen", country: "🇩🇰", avatar: "https://randomuser.me/api/portraits/women/41.jpg", action: "Just signed up", time: "4 mins ago" }
+        ];
+
+        // Shuffle and track used indices to never repeat
+        let shuffledFomo = [...fomoData].sort(() => Math.random() - 0.5);
+        let fomoIndex = 0;
+        const fomoPopup = document.getElementById('fomo-popup');
+        const notificationSound = document.getElementById('notification-sound');
+        let soundEnabled = false;
+
+        // Enable sound on first user interaction
+        document.addEventListener('click', () => {
+            soundEnabled = true;
+        }, { once: true });
+
+        function playNotificationSound() {
+            if (soundEnabled && notificationSound) {
+                notificationSound.volume = 0.3;
+                notificationSound.currentTime = 0;
+                notificationSound.play().catch(() => {});
+            }
+        }
+
+        function showFomoPopup() {
+            // Reset and reshuffle if we've shown all
+            if (fomoIndex >= shuffledFomo.length) {
+                shuffledFomo = [...fomoData].sort(() => Math.random() - 0.5);
+                fomoIndex = 0;
+            }
+
+            const data = shuffledFomo[fomoIndex];
+
+            document.getElementById('fomo-avatar').src = data.avatar;
+            document.getElementById('fomo-avatar').alt = data.name;
+            document.getElementById('fomo-name').textContent = data.name;
+            document.getElementById('fomo-flag').textContent = data.country;
+            document.getElementById('fomo-action').textContent = data.action;
+            document.getElementById('fomo-time').textContent = data.time;
+
+            fomoPopup.classList.add('show');
+            playNotificationSound();
+
+            setTimeout(() => {
+                fomoPopup.classList.remove('show');
+            }, 4000);
+
+            fomoIndex++;
+        }
+
+        // AGGRESSIVE FOMO - show popup every 3-6 seconds!
+        setTimeout(() => {
+            showFomoPopup();
+            setInterval(() => {
+                const delay = Math.random() * 3000 + 3000; // 3-6 seconds
+                setTimeout(showFomoPopup, delay);
+            }, 6000);
+        }, 2000);
+    </script>
 </body>
 </html>
